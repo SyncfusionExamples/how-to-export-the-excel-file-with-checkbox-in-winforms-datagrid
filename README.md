@@ -1,20 +1,20 @@
-# How to Export the excel file with checkbox in WinForms DataGrid (SfDataGid)?
+# How to export the Excel file with checkbox in WinForms DataGrid?
 
 ## About the sample
-This example illustrates how to Export the excel file with checkbox in [WinForms DataGrid](https://www.syncfusion.com/winforms-ui-controls/datagrid) (SfDataGrid)? 
+This example illustrates how to export the Excel file with checkbox in DataGrid.
 
-[WinForms DataGrid](https://www.syncfusion.com/winforms-ui-controls/datagrid) (SfDataGrid) does not provide the direct support to export the excel file with a checkbox. You can export the excel file with a checkbox by customization the [CellExporting](https://help.syncfusion.com/cr/windowsforms/Syncfusion.WinForms.DataGridConverter.ExcelExportingOptions.html#Syncfusion_WinForms_DataGridConverter_ExcelExportingOptions_CellExporting) event of the [ExcelExportingOptions](https://help.syncfusion.com/cr/windowsforms/Syncfusion.WinForms.DataGridConverter.ExcelExportingOptions.html) in [WinForms DataGrid](https://www.syncfusion.com/winforms-ui-controls/datagrid) (SfDataGrid).
+[WinForms DataGrid](https://www.syncfusion.com/winforms-ui-controls/datagrid) (SfDataGrid) does not provide the direct support to export the excel file with a checkbox. You can export the excel file with a checkbox by customizing the [CellExporting](https://help.syncfusion.com/cr/windowsforms/Syncfusion.WinForms.DataGridConverter.ExcelExportingOptions.html#Syncfusion_WinForms_DataGridConverter_ExcelExportingOptions_CellExporting) event of the [ExcelExportingOptions](https://help.syncfusion.com/cr/windowsforms/Syncfusion.WinForms.DataGridConverter.ExcelExportingOptions.html) in DataGrid.
 
 ```C#
 
 GridExcelExportingOptions.CellExporting += Options_CellExporting1;
-
+ 
 private void Options_CellExporting1(object sender, Syncfusion.WinForms.DataGridConverter.Events.DataGridCellExcelExportingEventArgs e)
 {
     // Based on the column mapping name and the cell type, we can change the cell values while exporting to excel.
     if (e.CellType == ExportCellType.RecordCell && e.ColumnName == "IsShipped")
     {
-        //add the checkbox into excel shhet
+        //add the checkbox into excel sheet
         var checkbox = e.Range.Worksheet.CheckBoxes.AddCheckBox(e.Range.Row, e.Range.Column, 20, 20);
 
         //set the checked or unchecked state based on cell value
